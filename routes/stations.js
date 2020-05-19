@@ -1,4 +1,4 @@
-import { getStations } from '../api/controller';
+import { getMeasuresByStation, getStations } from '../api/controller';
 
 const express = require('express');
 
@@ -9,8 +9,9 @@ router.get('/', async (req, res) => {
   res.send(stations);
 });
 
-router.get('/:name', (req, res) => {
-  res.send(`pomiary dla stacji ${req.params.name}`);
+router.get('/:id', async (req, res) => {
+  const data = await getMeasuresByStation(req.params.id);
+  res.send(data);
 });
 
 module.exports = router;
