@@ -1,9 +1,11 @@
+import configureDatabase from './db/config';
 const createError = require('http-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const debug = require('debug')('node-developer-air-quality-api:server');
 const http = require('http');
+
 const stationsRouter = require('./routes/stations');
 
 const app = express();
@@ -78,6 +80,7 @@ function onListening() {
 
 app.set('port', port);
 server.listen(port);
+configureDatabase();
 server.on('error', onError);
 server.on('listening', onListening);
 
