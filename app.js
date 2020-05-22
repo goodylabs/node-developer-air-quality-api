@@ -6,7 +6,7 @@ const logger = require('morgan');
 const debug = require('debug')('node-developer-air-quality-api:server');
 const http = require('http');
 
-const stationsRouter = require('./routes/stations');
+const router = require('./routes/index');
 
 const app = express();
 
@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/stations', stationsRouter);
+app.use('/', router);
 
 app.use((req, res, next) => {
   next(createError(404));
@@ -28,7 +28,7 @@ app.use((err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500);
-  res.send('error has happened');
+  res.send({ message: err.message });
 });
 
 function normalizePort(val) {

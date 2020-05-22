@@ -9,7 +9,7 @@ export const saveStations = (stations) => {
         upsert: true,
         useFindAndModify: false,
       }).catch((err) => {
-        console.log(err.message);
+        console.error(err.message);
       });
     }
   });
@@ -19,21 +19,21 @@ export const saveMeasures = async () => {
   const stations = await Station.find({});
   const ids = stations.map((station) => station.id);
   for (let i = 0; i < ids.length; i++) {
-    try {
-      const m = await getMeasuresByStation(ids[i]);
-      Measure.findOneAndUpdate(
-        { stationId: ids[i] },
-        { stationId: ids[i], measures: m },
-        {
-          upsert: true,
-          useFindAndModify: false,
-        },
-      ).catch((err) => {
-        console.log(err.message);
+    getMeasuresByStation(ids[i])
+      .then((m) => {
+        Measure.findOneAndUpdate(
+          { stationId: ids[i] },
+          { stationId: ids[i], measures: m },
+          {
+            upsert: true,
+            useFindAndModify: false,
+          },
+        ).catch((err) => {
+          console.error(err.message);
+        });
+      })
+      .catch((err) => {
+        console.error(err.message);
       });
-    } catch (e) {
-      console.log(e.message);
-    }
   }
-  console.log('Measure update complete');
 };

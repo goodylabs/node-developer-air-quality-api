@@ -7,7 +7,7 @@ export const configureDatabase = () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.error(`Connected to MongoDB at ${uri}`);
+    console.log(`Connected to MongoDB at ${uri}`);
   } catch (e) {
     console.error('Error connecting to db');
   }
