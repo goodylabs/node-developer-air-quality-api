@@ -1,5 +1,5 @@
 import { getMeasuresByStation, getStations } from '../api/controller';
-import { saveStations } from '../db/stations/func';
+import { saveMeasures, saveStations } from '../db/stations/func';
 
 const express = require('express');
 
@@ -13,6 +13,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   const data = await getMeasuresByStation(req.params.id);
+  saveMeasures();
   res.send(data);
 });
 

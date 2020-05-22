@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 export const stationSchema = mongoose.Schema({
-  id: Number,
-  stationName: String,
+  id: { type: Number, required: true },
+  stationName: { type: String, required: true },
   gegrLat: String,
   gegrLon: String,
   city: {
