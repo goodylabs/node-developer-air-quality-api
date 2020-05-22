@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const debug = require('debug')('node-developer-air-quality-api:server');
 const http = require('http');
-
+require('dotenv').config();
 const router = require('./routes/index');
 
 const app = express();

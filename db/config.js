@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
 
-export const configureDatabase = () => {
+const configureDatabase = () => {
   try {
-    const uri = 'mongodb://localhost/air_quality_db';
-    mongoose.connect(uri, {
+    mongoose.connect(process.env.DB_CONNECTION_STRING, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log(`Connected to MongoDB at ${uri}`);
+    console.log(`Connected to MongoDB at ${process.env.DB_CONNECTION_STRING}`);
   } catch (e) {
     console.error('Error connecting to db');
   }
