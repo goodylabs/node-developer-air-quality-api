@@ -1,9 +1,9 @@
 import Station from '../db/stations/schema';
-import Measure from '../db/measures/schema';
+import Measurement from '../db/measurements/schema';
 import {
-  getAggregatedMeasures,
-  getAggregatedMeasuresFromPeriod,
-} from '../db/measures/func';
+  getAggregatedMeasurements,
+  getAggregatedMeasurementsFromPeriod,
+} from '../db/measurements/func';
 
 const express = require('express');
 
@@ -15,17 +15,17 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-  const data = await Measure.find({ stationId: req.params.id });
+  const data = await Measurement.find({ stationId: req.params.id });
   res.send(data);
 });
 
 router.get('/:id/avg', async (req, res) => {
-  const data = await getAggregatedMeasures(req.params.id, req.body.date);
+  const data = await getAggregatedMeasurements(req.params.id, req.body.date);
   res.send(data);
 });
 
 router.get('/:id/avg/period', async (req, res) => {
-  const data = await getAggregatedMeasuresFromPeriod(
+  const data = await getAggregatedMeasurementsFromPeriod(
     req.params.id,
     req.body.start,
     req.body.end,

@@ -19,5 +19,13 @@
         "prettier/prettier": ["error", {"singleQuote": true, "parser": "babel-flow", "trailingComma": "all"}],
         "implicit-arrow-linebreak": "off",
         "no-plusplus": [2, { "allowForLoopAfterthoughts": true }]
-    }
+    },
+    "overrides": [
+        {
+            "files": ["test/*.test.js"], // Or *.test.js
+            "rules": {
+                "no-undef": "off"
+            }
+        }
+    ]
 }

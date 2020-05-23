@@ -1,4 +1,6 @@
 import configureDatabase from './db/config';
+import updateData from "./api/controller";
+
 const createError = require('http-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
@@ -83,5 +85,7 @@ server.listen(port);
 configureDatabase();
 server.on('error', onError);
 server.on('listening', onListening);
+updateData();
+setInterval(updateData, 1000 * 60 * 5);
 
 module.exports = app;

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-export const measureSchema = mongoose.Schema({
+export const measurementSchema = mongoose.Schema({
   stationId: { type: Number, required: true },
   measures: [
     {
@@ -15,5 +15,5 @@ export const measureSchema = mongoose.Schema({
   ],
 });
 
-const Measure = mongoose.model('Measure', measureSchema);
-export default Measure;
+const Measurement = mongoose.model('Measurement', measurementSchema);
+export default Measurement;
