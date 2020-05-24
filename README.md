@@ -8,19 +8,28 @@ npm install
 ```
 
 ## Usage
-Start the app:
-```bash
-npm start
-```
-Launch tests:
+**Environmental variables**
+ 
+To set up environmental variables create a .env file in project root directory.\
+Available variables:\
+*DB_CONNECTION_STRING* - connection string to MongoDB database
+*TEST_DB_CONNECTION_STRING* - connection string to MongoDB used for testing\
+*UPDATE_INTERVAL* - time between data updates in minutes\
+*PORT* - port of the server, default is 3000
+
+**Launch tests**:
 ```bash
 npm test
+```
+**Start the app**:
+```bash
+npm start
 ```
 
 # API documentation
 ### Get all the measuring stations.
-**URL** : `/`
-**Method** : `GET`
+**URL** : `/`\
+**Method** : `GET`\
 **Data example**
 
 ```json
@@ -40,14 +49,14 @@ npm test
         "gegrLat": "51.115933",
         "gegrLon": "17.141125",
         "stationName": "Wrocław - Bartnicza"
-    },
+    }
 ]
 ```
 
-### Get all measurements for a station.
-**URL** : `/stationId`
-**Example URL:** `/109`
-**Method** : `GET`
+### Get all measurements from a station.
+**URL** : `/stationId`\
+**Example URL:** `/109`\
+**Method** : `GET`\
 **Data example**
 ```json
 {
@@ -71,9 +80,9 @@ npm test
 ```
 
 ### Get average measurements from a station in a given day.
-**URL** : `/stationId/avg`
-**Example URL:** `/109/avg`
-**Method** : `GET`
+**URL** : `/stationId/avg`\
+**Example URL:** `/109/avg`\
+**Method** : `GET`\
 **Request body example**
 ```json
 {
@@ -113,9 +122,9 @@ npm test
 ```
 
 ### Get average measurements from a station in a given period.
-**URL** : `/stationId/avg/period`
-**Example URL:** `/109/avg/period`
-**Method** : `GET`
+**URL** : `/stationId/avg/period`\
+**Example URL:** `/109/avg/period`\
+**Method** : `GET`\
 **Request body example**
 ```json
 {
