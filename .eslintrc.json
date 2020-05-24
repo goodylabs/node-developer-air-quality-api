@@ -16,15 +16,17 @@
     },
     "plugins": ["prettier"],
     "rules": {
-        "prettier/prettier": ["error", {"singleQuote": true, "parser": "babel-flow", "trailingComma": "all"}],
+        "prettier/prettier": ["error", {"singleQuote": true, "parser": "babel-flow", "trailingComma": "all", "printWidth": 100}],
         "implicit-arrow-linebreak": "off",
-        "no-plusplus": [2, { "allowForLoopAfterthoughts": true }]
+        "no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
+        "no-console": "off"
     },
     "overrides": [
         {
             "files": ["test/*.test.js"], // Or *.test.js
             "rules": {
-                "no-undef": "off"
+                "no-undef": "off",
+                "object-curly-newline": "off"
             }
         }
     ]

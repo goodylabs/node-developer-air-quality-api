@@ -1,5 +1,5 @@
 import configureDatabase from './db/config';
-import updateData from "./api/controller";
+import updateData from './api/update';
 
 const createError = require('http-errors');
 const express = require('express');
@@ -24,7 +24,7 @@ app.use((req, res, next) => {
 });
 
 // error handler
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
@@ -36,6 +36,7 @@ app.use((err, req, res, next) => {
 function normalizePort(val) {
   const port = parseInt(val, 10);
 
+  // eslint-disable-next-line no-restricted-globals
   if (isNaN(port)) {
     // named pipe
     return val;
@@ -85,6 +86,6 @@ server.listen(port);
 configureDatabase();
 server.on('error', onError);
 server.on('listening', onListening);
-updateData().then(() => setInterval(updateData, 60000 * 2));
+updateData().then(() => setInterval(updateData, 60000 * process.env.UPDATE_INTERVAL));
 
 module.exports = app;

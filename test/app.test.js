@@ -21,10 +21,7 @@ describe('App test suite', () => {
     Measurement.findOneAndUpdate(
       { stationId: 109 },
       { stationId: 109, measures: testMeasurements },
-      {
-        upsert: true,
-        useFindAndModify: false,
-      },
+      { upsert: true, useFindAndModify: false },
     ).catch((err) => {
       console.error(err.message);
     });
@@ -49,10 +46,7 @@ describe('App test suite', () => {
   });
 
   test('read aggregated measurements', async () => {
-    const agg = await getAggregatedMeasurements(
-      109,
-      '2020-05-24T00:00:00.000+00:00',
-    );
+    const agg = await getAggregatedMeasurements(109, '2020-05-24T00:00:00.000+00:00');
     expect(agg.length).toEqual(6);
     expect(agg[0].key).toEqual('C6H6');
     expect(agg[0].avg).toEqual(0.11136375);

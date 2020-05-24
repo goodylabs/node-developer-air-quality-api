@@ -65,11 +65,7 @@ export const getAggregatedMeasurements = async (stationId, date) => {
   });
 };
 
-export const getAggregatedMeasurementsFromPeriod = async (
-  stationId,
-  start,
-  end,
-) => {
+export const getAggregatedMeasurementsFromPeriod = async (stationId, start, end) => {
   const m = await Measurement.findOne({ stationId });
   return m.measures.map((val) => {
     const { key } = val;

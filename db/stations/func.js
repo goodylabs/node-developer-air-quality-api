@@ -1,5 +1,6 @@
 import Station from './schema';
 
+// eslint-disable-next-line import/prefer-default-export
 export const saveStations = (stations) => {
   Object.keys(stations).forEach((s) => {
     if (Object.prototype.hasOwnProperty.call(stations, s)) {
