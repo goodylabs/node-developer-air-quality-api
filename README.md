@@ -12,7 +12,7 @@ npm install
  
 To set up environmental variables create a .env file in project root directory.\
 Available variables:\
-*DB_CONNECTION_STRING* - connection string to MongoDB database
+*DB_CONNECTION_STRING* - connection string to MongoDB database\
 *TEST_DB_CONNECTION_STRING* - connection string to MongoDB used for testing\
 *UPDATE_INTERVAL* - time between data updates in minutes\
 *PORT* - port of the server, default is 3000
