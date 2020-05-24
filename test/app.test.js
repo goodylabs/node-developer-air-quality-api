@@ -21,7 +21,7 @@ describe('App test suite', () => {
     saveStations(testStations);
     Measurement.findOneAndUpdate(
       { stationId: 109 },
-      { stationId: 109, measures: testMeasurements },
+      { stationId: 109, measurements: testMeasurements },
       { upsert: true, useFindAndModify: false },
     ).catch((err) => {
       console.error(err.message);
@@ -44,7 +44,7 @@ describe('App test suite', () => {
   test('read measurements from db', async () => {
     const measurement = await Measurement.findOne({ stationId: 109 });
     expect(measurement.stationId).toEqual(109);
-    expect(measurement.measures.length).toEqual(6);
+    expect(measurement.measurements.length).toEqual(6);
   });
 
   test('read aggregated measurements', async () => {
