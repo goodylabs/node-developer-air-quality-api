@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-  const data = await Measurement.find({ stationId: req.params.id });
+  const data = await Measurement.findOne({ stationId: req.params.id });
   res.send(data);
 });
 

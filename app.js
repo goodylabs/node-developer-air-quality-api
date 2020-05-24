@@ -85,7 +85,6 @@ server.listen(port);
 configureDatabase();
 server.on('error', onError);
 server.on('listening', onListening);
-updateData();
-setInterval(updateData, 1000 * 60 * 5);
+updateData().then(() => setInterval(updateData, 60000 * 2));
 
 module.exports = app;
