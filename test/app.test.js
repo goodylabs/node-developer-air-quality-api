@@ -18,6 +18,7 @@ describe('App test suite', () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
+    saveStations(testStations);
     Measurement.findOneAndUpdate(
       { stationId: 109 },
       { stationId: 109, measures: testMeasurements },
@@ -25,14 +26,15 @@ describe('App test suite', () => {
     ).catch((err) => {
       console.error(err.message);
     });
+    // wait for db to init before firing tests
+    await new Promise((r) => setTimeout(r, 500));
   });
 
   afterAll(async () => {
     await mongoose.disconnect();
   });
 
-  test('save stations to db', async () => {
-    saveStations(testStations);
+  test('read stations from db', async () => {
     const stations = await Station.find({});
     expect(stations.length).toEqual(testStations.length);
     expect(stations[0].id).toEqual(114);
