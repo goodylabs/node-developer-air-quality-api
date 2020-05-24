@@ -4,18 +4,19 @@ import {
   getAggregatedMeasurements,
   getAggregatedMeasurementsFromPeriod,
 } from '../db/measurements/func';
+import { measurementProjection, stationProjection } from '../db/projections';
 
 const express = require('express');
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const stations = await Station.find({});
+  const stations = await Station.find({}, stationProjection);
   res.send(stations);
 });
 
 router.get('/:id', async (req, res) => {
-  const data = await Measurement.findOne({ stationId: req.params.id });
+  const data = await Measurement.findOne({ stationId: req.params.id }, measurementProjection);
   res.send(data);
 });
 

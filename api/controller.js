@@ -5,7 +5,7 @@ export const getStations = async () => {
   return response.data;
 };
 
-export const getMeasuresByStation = async (stationId) => {
+export const getMeasurementsByStation = async (stationId) => {
   const response = await axios.get(
     `http://api.gios.gov.pl/pjp-api/rest/station/sensors/${stationId}`,
   );

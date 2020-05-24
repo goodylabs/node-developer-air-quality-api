@@ -1,5 +1,5 @@
 import Measurement from './schema';
-import { getMeasuresByStation } from '../../api/controller';
+import { getMeasurementsByStation } from '../../api/controller';
 
 const getAvg = (values, day) => {
   let i = 0;
@@ -35,11 +35,11 @@ const getAvgFromPeriod = (values, start, end) => {
 export const saveMeasures = async (stations) => {
   const ids = stations.map((station) => station.id);
   for (let i = 0; i < ids.length; i++) {
-    getMeasuresByStation(ids[i])
+    getMeasurementsByStation(ids[i])
       .then((m) => {
         Measurement.findOneAndUpdate(
           { stationId: ids[i] },
-          { stationId: ids[i], measures: m },
+          { stationId: ids[i], measurements: m },
           {
             upsert: true,
             useFindAndModify: false,
@@ -58,7 +58,7 @@ export const getAggregatedMeasurements = async (stationId, date) => {
   const m = await Measurement.findOne({ stationId });
   const day = new Date(date);
   day.setHours(0, 0, 0, 0);
-  return m.measures.map((val) => {
+  return m.measurements.map((val) => {
     const { key } = val;
     const avg = getAvg(val.values, day);
     return { key, avg };
@@ -67,7 +67,7 @@ export const getAggregatedMeasurements = async (stationId, date) => {
 
 export const getAggregatedMeasurementsFromPeriod = async (stationId, start, end) => {
   const m = await Measurement.findOne({ stationId });
-  return m.measures.map((val) => {
+  return m.measurements.map((val) => {
     const { key } = val;
     const avg = getAvgFromPeriod(val.values, new Date(start), new Date(end));
     return { key, avg };

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 export const measurementSchema = mongoose.Schema({
   stationId: { type: Number, required: true },
-  measures: [
+  measurements: [
     {
       key: { type: String, required: true },
       values: [
