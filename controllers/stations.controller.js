@@ -29,7 +29,9 @@ const getLatestMeasurements = async (req, res, next) => {
 
 const getMeasurements = async (req, res, next) => {
   try {
-    const result = await stations.getMeasurementsData(req.params.id, req.params.from);
+    const result = await stations.getMeasurementsData(
+      req.params.id, req.params.from, req.params.to,
+    );
     res.send(result);
   } catch (err) {
     next(err);
