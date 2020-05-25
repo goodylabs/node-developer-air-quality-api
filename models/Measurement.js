@@ -1,10 +1,10 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
-    stationId: Number,
-    type: String,
-    date: Date,
-    value: Number
-})
+  stationId: Number,
+  type: String,
+  date: Date,
+  value: Number,
+});
 
-module.exports = mongoose.model('Measurement', schema)
+module.exports = mongoose.model('Measurement', schema);

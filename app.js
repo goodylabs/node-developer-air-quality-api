@@ -1,15 +1,18 @@
-const express = require('express')
-const cors = require('cors')
+const express = require('express');
+const cors = require('cors');
 
-const database = require('./config/database')
-const config = require('./config/app')
+const database = require('./config/database');
+const task = require('./tasks/sync_task');
+const config = require('./config/app');
 
-const app = express()
-app.use(cors())
-database.connect()
+const app = express();
+app.use(cors());
 
-app.get('/', (req, res) => res.send('Working'))
+database.connect();
+task.start();
+
+app.get('/', (req, res) => res.send('Working'));
 
 const server = app.listen(config.port, () => {
-    console.log(`Listening at ${server.address().address}:${server.address().port}`)
-})
+  console.log(`Listening at ${server.address().address}:${server.address().port}`);
+});
