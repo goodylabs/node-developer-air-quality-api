@@ -1,3 +1,4 @@
+const moment = require('moment');
 const Station = require('../models/Station');
 const Measurement = require('../models/Measurement');
 
@@ -31,11 +32,24 @@ const getLatestData = (id) => new Promise((resolve, reject) => {
 });
 
 const getMeasurementsData = (id, from, to) => new Promise((resolve, reject) => {
-  const criteria = {};
-  if (from) criteria.$gte = from;
-  if (to) criteria.$lte = to;
+  const fromDate = moment(from);
+  const toDate = moment(to);
+
+  const criteria = {
+    stationId: +id,
+  };
+
+  if (fromDate.isValid() || toDate.isValid()) {
+    criteria.date = {
+      ...(fromDate.isValid() ? { $gte: from } : {}),
+      ...(toDate.isValid() ? { $lte: to } : {}),
+    };
+  }
 
   Measurement.aggregate([
+    {
+      $match: criteria,
+    },
     {
       $group: {
         _id: '$type',

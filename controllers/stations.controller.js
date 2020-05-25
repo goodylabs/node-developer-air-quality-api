@@ -30,7 +30,24 @@ const getLatestMeasurements = async (req, res, next) => {
 const getMeasurements = async (req, res, next) => {
   try {
     const result = await stations.getMeasurementsData(
-      req.params.id, req.params.from, req.params.to,
+      req.params.id, new Date(req.query.from), new Date(req.query.to),
+    );
+    res.send(result);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const getDailyMeasurements = async (req, res, next) => {
+  const from = new Date(req.query.date);
+  from.setHours(0, 0, 0, 0);
+
+  const to = new Date(req.query.date);
+  from.setHours(23, 59, 59, 999);
+
+  try {
+    const result = await stations.getMeasurementsData(
+      req.params.id, from, to,
     );
     res.send(result);
   } catch (err) {
@@ -43,4 +60,5 @@ module.exports = {
   findById,
   getLatestMeasurements,
   getMeasurements,
+  getDailyMeasurements,
 };
