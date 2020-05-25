@@ -18,7 +18,17 @@ const findById = async (req, res, next) => {
   }
 };
 
+const getLatestData = async (req, res, next) => {
+  try {
+    const result = await stations.getLatestData(req.params.id);
+    res.send(result);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   all,
   findById,
+  getLatestData,
 };
