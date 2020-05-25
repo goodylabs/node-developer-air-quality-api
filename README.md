@@ -22,10 +22,12 @@ Description: Return list of stations
 URL: /stations/:id\
 Method: GET\
 Description: Return station data
+Example: http://localhost:3000/stations/114
 
 URL: /stations/:id/measurements\
 Method: GET\
 Description: Return latest measurement data
+Example: http://localhost:3000/stations/114/measurements
 
 URL: /stations/:id/measurements/aggregated\
 Method: GET
@@ -33,3 +35,4 @@ Description: Return aggregated measurement data\
 Params:\
   from - date from which we want to calculate aggregated\
   to - date to which we want to calculate aggregated
+Example: http://localhost:3000/stations/114/measurements/aggregated?from=2020-05-22T11:00:00Z
