@@ -6,8 +6,8 @@
     "sensors_uri": "http://api.gios.gov.pl/pjp-api/rest/station/sensors/",
     "all_sensors_request_portions": 3,
     "all_records_request_portions": 10,
-    "update_stations_call": "30 18 * * *",
-    "update_records_first_call": "5 * * * *",
-    "update_records_second_call": "25 * * * *",
+    "update_stations_call": "18 18 * * *",
+    "update_records_first_call": "15 * * * *",
+    "update_records_second_call": "30 * * * *",
     "update_records_third_call": "45 * * * *"
 }

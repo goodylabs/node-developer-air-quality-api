@@ -14,10 +14,10 @@ const config = require('config');
 const station_data_repo = require('../repos/station_data_repo');
 const air_data_repo = require('../repos/air_data_repo');
 
-// Currently requests are fired off in XX:05, XX:25 and XX:45 -
-// three times per hour ro air quality data. The stations data are more
-// persistent, so they are updated on the daily basis. The time of
-// operations can be changed in ./config files
+// Currently requests are fired off at XX:15, XX:30 and XX:45 -
+// three times per hour for air quality data. The stations data are more
+// persistent, so they are updated on the daily basis (18:18). The time of
+// the operations can be changed in ./config files
 const update_records_first_call = config.get('update_records_first_call');
 const update_records_second_call = config.get('update_records_second_call');
 const update_records_third_call = config.get('update_records_third_call');
@@ -34,18 +34,14 @@ db.once('open', async () => {
     await db_update();
     schedule.scheduleJob(update_records_first_call, async () => {
         await air_data_repo.update();
-        console.log('first call fired');
     });
     schedule.scheduleJob(update_records_second_call, async () => {
         await air_data_repo.update();
-        console.log('second call fired');
     });
-    schedule.scheduleJob('38 * * * *', async () => {
+    schedule.scheduleJob(update_records_third_call, async () => {
         await air_data_repo.update();
-        console.log('third call fired');
     });
     schedule.scheduleJob(update_stations_call, async () => {
-        await db_update;
-        console.log('station call fired');
+        await station_data_repo.update();
     });
 });
