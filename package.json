@@ -1,0 +1,29 @@
+{
+  "name": "node-developer-air-quality-api",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "git@github.com:goodylabs/node-developer-air-quality-api.git",
+  "author": "Adikso <adam@zambrzycki.net>",
+  "license": "MIT",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "got": "^11.1.4",
+    "moment": "^2.26.0",
+    "mongoose": "^5.9.15",
+    "node-schedule": "^1.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "jest": "^26.0.1",
+    "supertest": "^4.0.2"
+  },
+  "scripts": {
+    "test": "jest",
+    "start": "node app.js"
+  }
+}
