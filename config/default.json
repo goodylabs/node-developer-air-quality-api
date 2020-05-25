@@ -1,0 +1,13 @@
+{
+    "port": 3000,
+    "dbpath": "mongodb://127.0.0.1:27017/air-quality-app-api",
+    "records_uri": "http://api.gios.gov.pl/pjp-api/rest/data/getData/",
+    "stations_uri": "http://api.gios.gov.pl/pjp-api/rest/station/findAll",
+    "sensors_uri": "http://api.gios.gov.pl/pjp-api/rest/station/sensors/",
+    "all_sensors_request_portions": 3,
+    "all_records_request_portions": 10,
+    "update_stations_call": "18 18 * * *",
+    "update_records_first_call": "15 * * * *",
+    "update_records_second_call": "30 * * * *",
+    "update_records_third_call": "45 * * * *"
+}
