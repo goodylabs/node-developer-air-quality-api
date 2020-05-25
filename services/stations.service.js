@@ -30,8 +30,37 @@ const getLatestData = (id) => new Promise((resolve, reject) => {
     });
 });
 
+const getMeasurementsData = (id, from, to) => new Promise((resolve, reject) => {
+  const criteria = {};
+  if (from) criteria.$gte = from;
+  if (to) criteria.$lte = to;
+
+  Measurement.aggregate([
+    {
+      $group: {
+        _id: '$type',
+        average: {
+          $avg: '$value',
+        },
+      },
+    },
+    {
+      $project: {
+        type: '$_id',
+        _id: false,
+        value: '$average',
+      },
+    },
+  ]).then((result) => {
+    resolve(result);
+  }).catch((err) => {
+    reject(err);
+  });
+});
+
 module.exports = {
   listAll,
   findById,
   getLatestData,
+  getMeasurementsData,
 };

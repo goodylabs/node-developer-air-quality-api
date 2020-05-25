@@ -18,9 +18,18 @@ const findById = async (req, res, next) => {
   }
 };
 
-const getLatestData = async (req, res, next) => {
+const getLatestMeasurements = async (req, res, next) => {
   try {
     const result = await stations.getLatestData(req.params.id);
+    res.send(result);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const getMeasurements = async (req, res, next) => {
+  try {
+    const result = await stations.getMeasurementsData(req.params.id, req.params.from);
     res.send(result);
   } catch (err) {
     next(err);
@@ -30,5 +39,6 @@ const getLatestData = async (req, res, next) => {
 module.exports = {
   all,
   findById,
-  getLatestData,
+  getLatestMeasurements,
+  getMeasurements,
 };
