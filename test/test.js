@@ -106,7 +106,6 @@ describe('Stations tests', () => {
   describe('getMeasurementsData', () => {
     it('should return data in date range', async () => {
       const result = await stations.getMeasurementsData(1, new Date('2020-01-25T07:00:00Z'), new Date('2020-06-25T03:01:00Z'));
-      console.log(result);
       expect(result[1].type).toEqual('NO2');
       expect(result[1].value).toEqual(5);
       expect(result[0].type).toEqual('PM10');
