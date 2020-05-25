@@ -9,6 +9,16 @@ const all = async (req, res, next) => {
   }
 };
 
+const findById = async (req, res, next) => {
+  try {
+    const result = await stations.findById(req.params.id);
+    res.send(result);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   all,
+  findById,
 };

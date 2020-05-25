@@ -9,6 +9,15 @@ const listAll = () => new Promise((resolve, reject) => {
   });
 });
 
+const findById = (id) => new Promise((resolve, reject) => {
+  Station.findOne({ id }).then((result) => {
+    resolve(result.toJSON());
+  }).catch((err) => {
+    reject(err);
+  });
+});
+
 module.exports = {
   listAll,
+  findById,
 };
