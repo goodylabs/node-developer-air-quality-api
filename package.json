@@ -1,0 +1,14 @@
+{
+  "name": "node-developer-air-quality-api",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "git@github.com:goodylabs/node-developer-air-quality-api.git",
+  "author": "Adikso <adam@zambrzycki.net>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.15"
+  }
+}
