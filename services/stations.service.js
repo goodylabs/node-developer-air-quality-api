@@ -13,6 +13,10 @@ const listAll = () => new Promise((resolve, reject) => {
 
 const findById = (id) => new Promise((resolve, reject) => {
   Station.findOne({ id }).then((result) => {
+    if (!result) {
+      resolve(null);
+      return;
+    }
     resolve(result.toJSON());
   }).catch((err) => {
     reject(err);
