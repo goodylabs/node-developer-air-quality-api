@@ -17,4 +17,16 @@ const schema = new mongoose.Schema({
   addressStreet: String,
 });
 
+// eslint-disable-next-line func-names
+schema.methods.toJSON = function () {
+  return {
+    id: this.id,
+    stationName: this.stationName,
+    gegrLat: this.gegrLat,
+    gegrLon: this.gegrLon,
+    city: this.city,
+    addressStreet: this.addressStreet,
+  };
+};
+
 module.exports = mongoose.model('Station', schema);
